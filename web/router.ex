@@ -13,10 +13,18 @@ defmodule ZacnePrzedszkoleApiElixir.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ZacnePrzedszkoleApiElixir do
-    pipe_through :browser # Use the default browser stack
+  scope "/schools", ZacnePrzedszkoleApiElixir do
+    pipe_through :api
 
-    get "/", PageController, :index
+    get "/locations", SchoolController, :locations
+    get "/ranking", SchoolController, :ranking
+    get "/search", SchoolController, :search
+  end
+
+  scope "/", ZacnePrzedszkoleApiElixir do
+    pipe_through :api
+
+    resources "/schools", SchoolController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.

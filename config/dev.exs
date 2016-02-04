@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :zacne_przedszkole_api_elixir, ZacnePrzedszkoleApiElixir.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "aserafin",
+  password: "",
   database: "zacne_przedszkole_api_elixir_dev",
   hostname: "localhost",
   pool_size: 10
