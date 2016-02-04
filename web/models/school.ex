@@ -16,6 +16,8 @@ defmodule ZacnePrzedszkoleApiElixir.School do
     field :longitude, :float
     field :stars, :float
 
+    has_many :rates, ZacnePrzedszkoleApiElixir.Rate
+
     timestamps
   end
 

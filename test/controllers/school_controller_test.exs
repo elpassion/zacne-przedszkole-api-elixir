@@ -45,11 +45,18 @@ defmodule ZacnePrzedszkoleApiElixir.SchoolControllerTest do
 
   test "/ranking returns max limit schools", %{conn: conn} do
     Enum.each(1..15, fn(i) ->
-      %School{ name: "Test School #{:i}", latitude: 1.0, longitude: 1.0, stars: 0.0 } |> Repo.insert!
+      %School{ name: "Test School #{i}", latitude: 1.0, longitude: 1.0, stars: 0.0 } |> Repo.insert!
     end)
 
     conn = get conn, school_path(conn, :ranking, %{limit: 10, offset: 0})
     assert Enum.count(json_response(conn, 200)) == 10
+  end
+
+  test "/search find school with proper name", %{conn: conn} do
+    school = %School{ name: "Test School", latitude: 1.0, longitude: 1.0, stars: 0.0 } |> Repo.insert!
+
+    conn = get conn, school_path(conn, :search, %{query: "test"})
+    assert List.first(json_response(conn, 200))["id"] == school.id
   end
 
   def school_hash(school) do

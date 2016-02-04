@@ -24,7 +24,9 @@ defmodule ZacnePrzedszkoleApiElixir.Router do
   scope "/", ZacnePrzedszkoleApiElixir do
     pipe_through :api
 
-    resources "/schools", SchoolController, only: [:index, :show]
+    resources "/schools", SchoolController, only: [:index, :show] do
+      resources "/rates", RateController, only: [:create]
+    end
   end
 
   # Other scopes may use custom stacks.

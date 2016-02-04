@@ -23,10 +23,14 @@ defmodule ZacnePrzedszkoleApiElixir.SchoolView do
   end
 
   def render("locations.json", %{schools: schools}) do
-    render_many(schools, ZacnePrzedszkoleApiElixir.SchoolView, "location.json")
+    render_many(schools, ZacnePrzedszkoleApiElixir.SchoolView, "base_school.json")
   end
 
-  def render("location.json", %{school: school}) do
+  def render("search.json", %{schools: schools}) do
+    render_many(schools, ZacnePrzedszkoleApiElixir.SchoolView, "base_school.json")
+  end
+
+  def render("base_school.json", %{school: school}) do
     %{id: school.id, longitude: school.longitude, latitude: school.latitude, name: school.name}
   end
 end

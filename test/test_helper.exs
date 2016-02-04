@@ -1,5 +1,3 @@
-
-
 ExUnit.start
 
 Mix.Task.run "ecto.create", ~w(-r ZacnePrzedszkoleApiElixir.Repo --quiet)
