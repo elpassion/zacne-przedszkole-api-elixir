@@ -25,7 +25,7 @@ defmodule ZacnePrzedszkoleApiElixir.SchoolController do
 
   def search(conn, %{"query" => query}) do
     p = "%#{query}%"
-    query = from school in School, where: ilike(school.name, ^p)    
+    query = from school in School, where: ilike(school.name, ^p)
     schools = Repo.all(query)
     render(conn, "search.json", schools: schools)
   end
